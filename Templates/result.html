@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Result - {{ result.username }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body class="dark-mode">
+    <div class="container">
+        <h1>Analysis Result for @{{ result.username }}</h1>
+
+        <div class="result-card {{ 'fake' if result.prediction == 'fake' else 'genuine' }}">
+            <h2>Prediction: {{ result.prediction | capitalize }}</h2>
+            <p>Confidence: {{ result.confidence }}%</p>
+        </div>
+
+        <!-- Adaptive AI Risk Score -->
+        <div class="risk-score">
+            <h3>Adaptive AI Risk Score</h3>
+            <div id="risk-score-bar" class="progress-bar">
+                <div class="progress" style="width: {{ result.confidence }}%;"></div>
+            </div>
+             <p>Risk Score: {{ result.confidence }}% <!--(Simulated GPT-4/Llama-3 reasoning)--></p> 
+        </div>
+
+        <!-- Account Details -->
+        <div class="account-details">
+            <h3>Account Details</h3>
+            <p><strong>Followers:</strong> {{ result.features.followers_count | comma }}</p>
+            <p><strong>Friends:</strong> {{ result.features.friends_count | comma }}</p>
+            <p><strong>Tweets:</strong> {{ result.features.statuses_count | comma }}</p>
+            <p><strong>Listings:</strong> {{ result.features.listed_count | comma }}</p>
+            <p><strong>Created At:</strong> {{ result.account_data.created_at | format_date }}</p>
+            <!-- <p><strong>Verified:</strong> {{ result.account_data.verified }}</p>
+            <p><strong>Description:</strong> {{ result.account_data.description }}</p>
+            <p><strong>Source:</strong> {{ result.account_data.source }}</p> -->
+        </div>
+
+        <!-- Advanced Influence Analytics -->
+        <div class="influence-analytics">
+            <h3>Advanced Influence Analytics</h3>
+            <svg id="influence-chart" width="100%" height="200"></svg>
+            <p>Engagement credibility over time <!-- (D3.js time-series)--></p>
+        </div>
+
+        <!-- AR Data Visualization -->
+        <div id="ar-visualization" class="ar-visualization">
+            <h3>AR Data Visualization</h3>
+            <canvas id="ar-canvas" width="100%" height="300"></canvas>
+            <p>Basic 2D visualization <!--(WebXR/AR.js can be extended here)--></p>
+        </div>
+
+        <a href="/" class="back-btn">Analyze Another Account</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            initInfluenceChart({{ result.confidence }});
+            initARVisualization();
+        });
+    </script>
+</body>
+</html>

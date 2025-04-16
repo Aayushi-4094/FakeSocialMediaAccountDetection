@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Analyze Twitter accounts for authenticity with advanced AI and AR visualizations.">
+    <title>Twitter Account Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    <script src="https://d3js.org/d3.v7.min.js" defer></script>
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body class="dark-mode">
+    <header class="header">
+        <h1>Twitter Account Analyzer</h1>
+        <p class="subtitle">Uncover the truth behind Twitter accounts with cutting-edge AI & AR</p>
+    </header>
+
+    <main class="container">
+        <form method="POST" action="/analyze" class="input-form" aria-label="Twitter Account Analysis Form">
+            <input type="text" name="username" placeholder="@username" required class="input-field" aria-label="Enter Twitter username">
+            <button type="submit" class="analyze-btn" aria-label="Analyze Account">Analyze</button>
+        </form>
+
+        <!-- Real-Time Threat Map -->
+        <section class="threat-map-section">
+            <h2>Global Threat Map</h2>
+            <div class="visualization-container">
+                <svg id="threat-map-svg" class="visualization"></svg>
+            </div>
+            <p class="caption">Real-time visualization of fake account activity <!--(D3.js + WebXR-ready)--></p>
+        </section>
+
+        <!-- Live Botnet Evolution Simulation -->
+        <section class="botnet-simulation-section">
+            <h2>Botnet Evolution</h2>
+            <div class="visualization-container">
+                <svg id="botnet-simulation-svg" class="visualization"></svg>
+            </div>
+            <p class="caption">Dynamic simulation of botnet clusters <!--(D3.js + Three.js potential)--></p>
+        </section>
+
+        <!-- Theme & Settings Panel -->
+        <section class="settings-panel">
+            <button id="toggle-theme" class="theme-btn" aria-label="Toggle Theme">Switch Theme</button>
+            <!-- <p class="caption">Choose Dark, Cyberpunk, Matrix, or Hacker themes</p> -->
+        </section>
+    </main>
+
+    <!-- <footer class="footer">
+        <p>&copy; 2025 xAI. Powered by Grok 3.</p>
+    </footer> -->
+</body>
+</html>
